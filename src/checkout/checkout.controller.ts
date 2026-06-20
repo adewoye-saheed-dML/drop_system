@@ -6,10 +6,18 @@ import {
     Param,
   } from '@nestjs/common';
   
+  import {
+    ApiBody,
+    ApiOperation,
+    ApiResponse,
+    ApiTags,
+  } from '@nestjs/swagger';
+
   import { CheckoutService } from './checkout.service';
   
   import { CheckoutDto } from './dto/checkout.dto';
   
+  @ApiTags('Checkout')
   @Controller('checkout')
   export class CheckoutController {
   
@@ -19,6 +27,18 @@ import {
     ) {}
   
     @Post()
+    @ApiOperation({
+      summary:
+        'Complete checkout',
+    })
+    @ApiBody({
+      type: CheckoutDto,
+    })
+    @ApiResponse({
+      status: 201,
+      description:
+        'Checkout successful',
+    })
     checkout(
       @Body()
       dto: CheckoutDto,
@@ -29,11 +49,15 @@ import {
     }
 
     @Get(':id')
+    @ApiOperation({
+      summary:
+        'Get order details',
+    })
     getOrder(
-    @Param('id') id: string,
+      @Param('id') id: string,
     ) {
-    return this.checkoutService.getOrder(
-    id,
-  );
-}
+      return this.checkoutService.getOrder(
+        id,
+      );
+    }
   }

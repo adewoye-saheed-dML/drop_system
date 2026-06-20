@@ -71,7 +71,7 @@ import {
                 expiresAt:
                   addMinutes(
                     new Date(),
-                    15,
+                    10,
                   ),
               },
             });

@@ -19,7 +19,24 @@ async function main() {
        price:900,
        totalStock:5,
        availableStock:5
-     }
+     },
+
+     {
+      name: 'iPhone 17 Pro',
+      description: 'Launch Edition',
+      price: 1200,
+      totalStock: 10,
+      availableStock: 10,
+    },
+
+    {
+      name: 'RTX 6090',
+      description: 'Founders Edition',
+      price: 1800,
+      totalStock: 3,
+      availableStock: 3,
+    }
+    
    ]
  })
 }
