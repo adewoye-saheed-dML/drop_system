@@ -7,7 +7,8 @@ import {
   import { PrismaService } from '../prisma/prisma.service';
   
   import { CheckoutDto } from './dto/checkout.dto';
-  
+  import { OrderStatus } from '@prisma/client';
+
   @Injectable()
   export class CheckoutService {
   
@@ -65,12 +66,13 @@ import {
               reservation.product.price,
             ) * reservation.quantity;
   
-          const order =
+            const order =
             await tx.order.create({
               data: {
                 reservationId:
                   reservation.id,
                 amount,
+                status: OrderStatus.PAID,
               },
             });
   
@@ -83,11 +85,7 @@ import {
             },
           });
   
-          return {
-            message:
-              'Checkout successful',
-            order,
-          };
+          return order;
         },
       );
     }

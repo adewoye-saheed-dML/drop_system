@@ -13,6 +13,12 @@ enum ReservationStatus {
   EXPIRED
 }
 
+enum OrderStatus {
+  PENDING
+  PAID
+  CANCELLED
+}
+
 model Product {
   id          String  @id @default(uuid())
   name        String
@@ -52,6 +58,8 @@ model Order {
   reservation Reservation @relation(fields: [reservationId], references: [id])
 
   amount Decimal
+
+  status OrderStatus @default(PAID)
 
   createdAt DateTime @default(now())
 }
